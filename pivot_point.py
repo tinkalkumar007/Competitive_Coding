@@ -1,0 +1,31 @@
+list1=list(map(int,input().split()))
+s=0
+e=len(list1)-1
+mid=(s+e)//2
+ans=0
+if(list1[mid-1]>list1[mid]):
+    ans=mid-1
+elif(list1[mid]>list1[mid+1]):
+    ans=mid
+else:
+    if(list1[s]>=list1[mid]):
+        e=mid-1
+        mid=(s+e)//2
+        while(s<=e):
+            if(list1[mid-1]>list1[mid]):
+                ans=mid-1
+                break
+            elif(list1[mid]>list1[mid+1]):
+                ans=mid-1
+                break
+    else:
+        s=mid+1 
+        mid=(s+e)//2
+        while(s<=e):
+            if(list1[mid-1]>list1[mid]):
+                ans=mid-1
+                break
+            elif(list1[mid]>list1[mid+1]):
+                ans=mid
+                break
+print(ans)

@@ -1,0 +1,30 @@
+x=int(input(""))
+list1=list(map(int,input().split()))
+s=0
+e=len(list1)-1
+mid=(s+e)//2
+ans=0
+upp=0
+while(s<=e):
+    mid=(s+e)//2
+    if(list1[mid]==x):
+        ans=mid
+        e=mid-1
+    elif(list1[mid]>x):
+        e=mid-1
+    else:
+        s=mid+1
+print(f"lower bound of",x,"is",ans)
+s=0
+e=len(list1)-1
+mid=(s+e)//2
+while(s<=e):
+    mid=(s+e)//2
+    if(list1[mid]==x):
+        upp=mid
+        s=mid+1
+    elif(list1[mid]>x):
+        e=mid-1
+    else:
+        s=mid+1
+print(f"upper bound of",x,"is",upp) 

@@ -1,0 +1,43 @@
+x=int(input())
+list1=list(map(int,input().split()))
+s=0
+ans=0
+e=len(list1)-1
+mid=(s+e)//2
+if list1[mid]<list1[e]:
+    if(list1[mid]<=x and x<=list1[e]):
+        s=mid+1
+        while(s<=e):
+            mid=(s+e)//2
+            if(list1[mid]>x):
+                e=mid-1
+            elif(list1[mid]<x):
+                s=mid+1
+            else:
+                ans=mid
+                break
+    else:
+        e=mid
+        while(s<=e):
+            if(list1[s]==x):
+                ans=mid
+                break
+elif list1[mid]>list1[s]:
+    if(list1[s]<x<list1[mid]):
+        e=mid
+        while(s<=e):
+            mid=(s+e)//2
+            if(list1[mid]>x):
+                e=mid-1
+            elif(list1[mid]<x):
+                s=mid+1
+            else:
+                ans=mid
+                break
+    else:
+        s=mid+1
+        while(s<=e):
+            if(list1[mid]==x):
+                ans=mid
+                break
+print(ans)
