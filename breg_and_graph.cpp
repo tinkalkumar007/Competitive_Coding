@@ -4,28 +4,33 @@ using ll=long long;
 int main(){
     ll n,k;
     cin>>n;
-    vector<vector<ll>> arr(n,vector<ll>(n,0));
+    vector<vector<ll>> arr(n,vector<ll>(n));
     for(ll i=0;i<n;i++){
         for(ll j=0;j<n;j++){
             cin>>arr[i][j];
         }
     }
-    vector<vector<ll>> temp(arr.begin(),arr.end());
-    for(ll x=0;x<n;x++){
-        cin>>k;
-        k--;
+    vector<ll> ord(n),vis(n,0),res(n); 
+    for(int i=0;i<n;i++){
+        cin>>ord[i];
+        ord[i]--;
+    }
+
+    for(ll x=n-1;x>=0;x--){
+        k=ord[x];
         ll ans=0;
-        arr=temp;
+        vis[k]=true;
         for(ll i=0;i<n;++i){
             for(ll j=0;j<n;++j){
                 arr[i][j]=min(arr[i][j],arr[i][k]+arr[k][j]);
-                ans+=arr[i][j];
+                if(vis[i] && vis[j]) ans+=arr[i][j];
             }
-            temp[i][k]=0;
-            temp[k][i]=0;
         }
-        cout<<ans<<" ";
+        res[x]=ans;
     }
-    cout<<endl;
+    for(int i=0;i<n;i++){
+        cout<<res[i]<<" ";
+    }
+    //cout<<endl;
     return 0;
 }
